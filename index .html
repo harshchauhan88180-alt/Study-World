@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Study World | Digital Library</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f2f6ff;color:#17233c}header{background:linear-gradient(135deg,#123b91,#2879e7);color:white;text-align:center;padding:35px 16px}header h1{margin:0;font-size:32px}header p{opacity:.9}nav{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:20px}nav a{color:white;text-decoration:none;background:#ffffff25;padding:10px 16px;border-radius:20px}main{max-width:1000px;margin:auto;padding:22px 15px}.search{width:100%;padding:15px;border:1px solid #cbd5e1;border-radius:12px;font-size:16px}.filters{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.filters button{border:0;border-radius:20px;padding:11px 17px;background:#dce7ff;color:#173b83;font-weight:bold}.filters button.active{background:#174bb4;color:white}h2{margin-top:28px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}.card{background:white;padding:22px;border-radius:16px;box-shadow:0 4px 15px #142f6512}.card h3{margin:10px 0}.card p{color:#64748b;line-height:1.5}.tag{display:inline-block;background:#e8f0ff;color:#174bb4;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:bold}.paid{background:#fff1cc;color:#936000}.btn{display:inline-block;background:#1858d2;color:white;padding:11px 18px;border-radius:9px;text-decoration:none;border:0;cursor:pointer}.btn.gold{background:#e8a500;color:#191919}.notice{background:#e5edff;padding:18px;border-radius:12px;margin-top:25px;line-height:1.6}footer{text-align:center;padding:25px;color:#64748b}[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header><h1>📚 Study World</h1><p>Your Digital Learning Library</p><p>Learn Anytime, Anywhere</p><nav><a href="#library">Books</a><a href="#library">Notes</a><a href="#about">About</a></nav></header>
+<main>
+<h2 id="library">Explore Study Materials</h2>
+<input class="search" id="search" type="search" placeholder="Search books, notes, exams..." aria-label="Search study materials">
+<div class="filters"><button class="active" data-filter="all">All</button><button data-filter="free">Free</button><button data-filter="paid">Premium</button></div>
+<div class="grid" id="books">
+<article class="card" data-type="free"><span class="tag">FREE</span><h3>📘 Class 1–12 School Books</h3><p>School books and learning resources for students.</p><button class="btn" onclick="comingSoon()">Explore Books</button></article>
+<article class="card" data-type="free"><span class="tag">FREE</span><h3>🏆 Competitive Exams</h3><p>SSC, UPSC, Railway and other exam resources.</p><button class="btn" onclick="comingSoon()">Explore Exams</button></article>
+<article class="card" data-type="free"><span class="tag">FREE</span><h3>📄 Free PDF Notes</h3><p>Free educational notes and study material.</p><button class="btn" onclick="comingSoon()">View PDFs</button></article>
+<article class="card" data-type="paid"><span class="tag paid">PREMIUM</span><h3>✍️ Handwritten Notes</h3><p>Premium handwritten notes for revision.</p><button class="btn gold" onclick="comingSoon()">View Premium</button></article>
+<article class="card" data-type="paid"><span class="tag paid">PREMIUM</span><h3>🎓 College Books</h3><p>College books and semester study material.</p><button class="btn gold" onclick="comingSoon()">View Premium</button></article>
+<article class="card" data-type="paid"><span class="tag paid">PREMIUM</span><h3>📚 Premium Exam Notes</h3><p>Special study material for competitive exams.</p><button class="btn gold" onclick="comingSoon()">View Premium</button></article>
+</div><p id="empty" hidden>No matching materials found.</p>
+<section class="notice" id="about"><h2>About Study World</h2><p>Study World brings free and premium educational resources together in one place.</p><p>New books and notes will be added soon.</p></section>
+</main>
+<footer>© 2026 Study World. All rights reserved.</footer>
+<script>
+const search=document.getElementById('search');const cards=[...document.querySelectorAll('.card')];const buttons=[...document.querySelectorAll('[data-filter]')];let filter='all';function update(){let count=0;cards.forEach(card=>{const match=card.textContent.toLowerCase().includes(search.value.toLowerCase().trim());const type=filter==='all'||card.dataset.type===filter;card.hidden=!(match&&type);if(!card.hidden)count++});document.getElementById('empty').hidden=count!==0}buttons.forEach(button=>button.addEventListener('click',()=>{filter=button.dataset.filter;buttons.forEach(b=>b.classList.toggle('active',b===button));update()}));search.addEventListener('input',update);function comingSoon(){alert('Study material coming soon!')}
+</script>
+</body>
+</html>
